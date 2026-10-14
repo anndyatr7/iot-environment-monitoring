@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": 198.6, "left": 175.6, "attrs": {} },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": -33.56, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -95.7,
+      "left": 407.4,
+      "attrs": { "temperature": "70.2", "humidity": "44.5" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -8.1,
+      "left": 207.1,
+      "attrs": { "distance": "185" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 246.4,
+      "left": -234.4,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -74.4,
+      "left": 88.2,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -70.6,
+      "left": 172.8,
+      "attrs": { "color": "green", "xray": "1" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "h-28.8", "v-105.6", "h-432", "v115.2" ] ],
+    [ "esp:15", "dht1:SDA", "green", [ "h19.2", "v249.6", "h345.5" ] ],
+    [ "esp:5", "ultrasonic1:TRIG", "green", [ "h0" ] ],
+    [ "ultrasonic1:ECHO", "esp:18", "green", [ "v0" ] ],
+    [ "lcd1:SDA", "esp:21", "green", [ "h-67.2", "v-326.2", "h384", "v105.6" ] ],
+    [ "lcd1:SCL", "esp:22", "green", [ "h-86.4", "v-316.5", "h393.6", "v57.6" ] ],
+    [ "bz1:1", "esp:19", "green", [ "v0" ] ],
+    [ "esp:GND.3", "bb1:tn.1", "black", [ "h0" ] ],
+    [ "bz1:2", "bb1:tn.2", "green", [ "h57.2", "v163.3" ] ],
+    [ "lcd1:GND", "bb1:tn.5", "black", [ "h-19.2", "v134.4", "h420.8" ] ],
+    [ "dht1:GND", "bb1:tn.6", "black", [ "v192", "h-155.2" ] ],
+    [ "esp:5V", "bb1:tp.1", "red", [ "v9.6", "h163.35", "v-0.3" ] ],
+    [ "lcd1:VCC", "bb1:tp.2", "red", [ "h-38.4", "v153.7", "h489.6", "v-230.7" ] ],
+    [ "ultrasonic1:VCC", "bb1:tp.3", "red", [ "v105.6", "h-48", "v18.9" ] ],
+    [ "ultrasonic1:GND", "bb1:tn.10", "black", [ "v0" ] ],
+    [ "btn1:2.r", "bb1:tn.4", "green", [ "h0" ] ],
+    [ "btn1:1.l", "esp:23", "green", [ "v-19.2", "h-105.6" ] ]
+  ],
+  "dependencies": {}
+}
